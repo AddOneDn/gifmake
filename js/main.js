@@ -100,7 +100,6 @@ function ctxWsyw(){
   var c = document.getElementById("cvs");
   ctx = c.getContext("2d")
   setTimeout(function(){
-    console.log(arr)
     let i = 0
     let j = 0
     function render() {
@@ -147,7 +146,6 @@ function ctxWsyw(){
       }
       requestAnimationFrame(render)
       i++;
-      console.log(i)
       if(i >= 124)
         document.getElementById("loading").style.display = "none" 
     }
