@@ -1,7 +1,12 @@
 var http=require('http');
 var fs=require('fs');
+var compression = require('compression');
 var root="./"
 //开启服务
+var app = express();
+ 
+// app.use(compression());
+
 var server=http.createServer(function(req,res){
     var url=req.url;
     var file = root+url;

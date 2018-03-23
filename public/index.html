@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Gif Make</title>
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+  .img{
+    width: 600px;
+    height: 600px;
+    display: none;
+  }
+  body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url('./img/bg.jpeg');
+    background-size: cover;
+  }
+  .top-select{
+    margin-top: 50px;
+  }
+  .thumbnail{
+    cursor: pointer;
+  }
+  .main{
+    position: relative;
+    width: 800px;
+    height: 300px;
+    padding: 30px 20px;
+    background-color: hsla(0,0%,100%,.3);
+    border-radius: 5px;
+    box-shadow: darkgrey 5px 5px 30px 1px ;
+    overflow: hidden;
+  }
+  .main::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(20px);
+    margin: -30px;
+  }
+  .main:hover{
+    box-shadow: darkgrey 5px 5px 30px 3px ;
+  }
+  .flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-control{
+    width: 80%;
+    margin-bottom: 15px;
+  }
+  .col-div{
+    height: 100%;
+  }
+</style>
+<body>
+  <h1>效果不好多生成几遍~</h1>
+  <div class="top-select">
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="thumbnail wsyw-img" tabindex="1" onclick="changeToWsyw()">
+        <img src="./img/wsyw.jpg" alt="wsyw">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail fzs-img" tabindex="2" onclick="changeToFzs()">
+        <img src="./img/fzs.jpg" alt="fzs">
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="main container">
+    <div class="row" style="height: 100%">
+        <div class="col-div left-input col-md-5" id="wsyw" style="overflow:scroll;display:block">
+            <input type="text" class="form-control" id="wsyw1" placeholder="好啊">
+            <input type="text" class="form-control" id="wsyw2" placeholder="就算你是一流工程师">
+            <input type="text" class="form-control" id="wsyw3" placeholder="就算你出报告再完美">
+            <input type="text" class="form-control" id="wsyw4" placeholder="我叫你改你就要改">
+            <input type="text" class="form-control" id="wsyw5" placeholder="毕竟我是客户">
+            <input type="text" class="form-control" id="wsyw6" placeholder="客户了不起啊">
+            <input type="text" class="form-control" id="wsyw7" placeholder="Sorry 客户就是了不起">
+            <input type="text" class="form-control" id="wsyw8" placeholder="回头让这个傻逼改一晚上">
+            <input type="text" class="form-control" id="wsyw9" placeholder="天天改 天天改">              
+        </div>
+        <div class="col-div left-input col-md-5 fzs" id="fzs" style="overflow:scroll;display:none">
+            <input type="text" class="form-control" id="fzs1" placeholder="我汤茂行就是饿死">
+            <input type="text" class="form-control" id="fzs2" placeholder="死外边,从这跳出去">
+            <input type="text" class="form-control" id="fzs3" placeholder="也绝不吃你们一口饭">
+            <input type="text" class="form-control" id="fzs4" placeholder="真香">             
+        </div>
+        <div class="col-div flex col-md-1">
+          <button class="btn btn-success" onclick="make()">生成</button>
+        </div>
+        <div class="col-div right-output col-md-6 flex">
+            <canvas id="cvs" width="300" height="170" style="display:none"></canvas>
+            <img id="output" />
+        </div>
+    </div>
+  </div>
+  <div id="loading" style="display:none">
+    <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+  <script src="./gif.js"></script>
+  <script src="./js/main.js"></script>
+  <style>
+      .loader {
+          background: rgba(255,255,255,0.7);
+          bottom: 0;
+          left: 0;
+          overflow: hidden;
+          position: fixed;
+          right: 0;
+          top: 0;
+          z-index: 99999;
+      }
+
+      .loader-inner {
+          bottom: 0;
+          height: 60px;
+          left: 0;
+          margin: auto;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 100px;
+      }
+
+      .loader-line-wrap {
+          -webkit-animation: 
+          spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
+        ;
+                  animation: 
+          spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
+        ;
+          -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+          height: 50px;
+          left: 0;
+          overflow: hidden;
+          position: absolute;
+          top: 0;
+          -webkit-transform-origin: 50% 100%;
+                  transform-origin: 50% 100%;
+          width: 100px;
+      }
+      .loader-line {
+          border: 4px solid transparent;
+          border-radius: 100%;
+          -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+          height: 100px;
+          left: 0;
+          margin: 0 auto;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 100px;
+      }
+      .loader-line-wrap:nth-child(1) { -webkit-animation-delay: -50ms; animation-delay: -50ms; }
+      .loader-line-wrap:nth-child(2) { -webkit-animation-delay: -100ms; animation-delay: -100ms; }
+      .loader-line-wrap:nth-child(3) { -webkit-animation-delay: -150ms; animation-delay: -150ms; }
+      .loader-line-wrap:nth-child(4) { -webkit-animation-delay: -200ms; animation-delay: -200ms; }
+      .loader-line-wrap:nth-child(5) { -webkit-animation-delay: -250ms; animation-delay: -250ms; }
+
+      .loader-line-wrap:nth-child(1) .loader-line {
+          border-color: hsl(0, 80%, 60%);
+          height: 90px;
+          width: 90px;
+          top: 7px;
+      }
+      .loader-line-wrap:nth-child(2) .loader-line {
+          border-color: hsl(60, 80%, 60%);
+          height: 76px;
+          width: 76px;
+          top: 14px;
+      }
+      .loader-line-wrap:nth-child(3) .loader-line {
+          border-color: hsl(120, 80%, 60%);
+          height: 62px;
+          width: 62px;
+          top: 21px;
+      }
+      .loader-line-wrap:nth-child(4) .loader-line {
+          border-color: hsl(180, 80%, 60%);
+          height: 48px;
+          width: 48px;
+          top: 28px;
+      }
+      .loader-line-wrap:nth-child(5) .loader-line {
+          border-color: hsl(240, 80%, 60%);
+          height: 34px;
+          width: 34px;
+          top: 35px;
+      }
+
+      @-webkit-keyframes spin {
+          0%, 15% {
+          -webkit-transform: rotate(0);
+                  transform: rotate(0);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+                  transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+          0%, 15% {
+          -webkit-transform: rotate(0);
+                  transform: rotate(0);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+                  transform: rotate(360deg);
+        }
+      }
+  </style>
+</html>
