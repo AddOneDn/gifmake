@@ -1,11 +1,11 @@
 function make(){
   if(document.getElementById("wsyw").style.display == "block")
-    this.ctxWsyw()
+    this.ctxWsyw(124)
   else if(document.getElementById("fzs").style.display == "block")
-    this.ctxFzs()
+    this.ctxFzs(51)
 }
 // 饭真香
-function ctxFzs(){
+function ctxFzs(num){
   document.getElementById("loading").style.display = "block"
   var c = document.getElementById("cvs");
   // 获取绘制上下文
@@ -21,7 +21,7 @@ function ctxFzs(){
   var arr = []
   var ctxArr = []
   var ctx = []
-  for(let i = 0 ; i < 52 ; i++){
+  for(let i = 0 ; i < num ; i++){
     var image = new Image()
     image.src = `./img/fzs/${i}.jpg`
     arr[i] = image
@@ -55,12 +55,12 @@ function ctxFzs(){
       }
       requestAnimationFrame(render)
       i++;
-      if(i >= 51)
+      if(i >= num)
         document.getElementById("loading").style.display = "none" 
     }
     render()
-    for(let j = 0 ; j < 52 ; j++){
-      gif.addFrame(ctx,{delay: 200})
+    for(let j = 0 ; j < num ; j++){
+      gif.addFrame(ctx,{delay: 167})
     }
     gif.on('finished', function(blob) {
       document.getElementById("output").src = URL.createObjectURL(blob)
@@ -72,7 +72,7 @@ function ctxFzs(){
 }
 
 //为所欲为
-function ctxWsyw(){
+function ctxWsyw(num){
   document.getElementById("loading").style.display = "block"
   var c = document.getElementById("cvs");
   // 获取绘制上下文
@@ -88,7 +88,7 @@ function ctxWsyw(){
   var arr = []
   var ctxArr = []
   var ctx = []
-  for(let i = 0 ; i < 124 ; i++){
+  for(let i = 0 ; i < num ; i++){
     var image = new Image()
     image.src = `./img/wsyw/${i}.jpg`
     arr[i] = image
@@ -142,12 +142,12 @@ function ctxWsyw(){
       }
       requestAnimationFrame(render)
       i++;
-      if(i >= 124)
+      if(i >= num)
         document.getElementById("loading").style.display = "none" 
     }
     render()
-    for(let j = 0 ; j < 124 ; j++){
-      gif.addFrame(ctx,{delay: 120})
+    for(let j = 0 ; j < num ; j++){
+      gif.addFrame(ctx,{delay: (10000/document.getElementById("zs").value)})
     }
     gif.on('finished', function(blob) {
       document.getElementById("output").src = URL.createObjectURL(blob)
