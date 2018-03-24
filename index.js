@@ -12,9 +12,9 @@ app.get('/', function (req, res) {
   res.send('Nothing');
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(8888, function () {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('Server listening at http://localhost:3000');
+  console.log('Server listening at http://localhost:8888');
 });
