@@ -53,10 +53,10 @@ function ctxFzs(num){
         ctx.fillStyle = "white"
         ctx.fillText(document.getElementById("fzs4").value,100,165)
       }
-      requestAnimationFrame(render)
       i++;
       if(i >= num)
-        document.getElementById("loading").style.display = "none" 
+        document.getElementById("loading").style.display = "none"
+      requestAnimationFrame(render)
     }
     render()
     for(let j = 0 ; j < num ; j++){
